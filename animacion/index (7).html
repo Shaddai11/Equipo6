@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Efectos del Sueño - Presentación Animada</title>
+  <link rel="icon" type="image/png" href="shaddai2.ico" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: linear-gradient(135deg, #2c3e50, #4ca1af);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none; 
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      filter: drop-shadow(0 0 2px white);
+      animation-name: twinkle, moveStar;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.8; }
+      50% { opacity: 0.2; }
+    }
+
+    @keyframes moveStar {
+      0% { transform: translate(0, 0); }
+      50% { transform: translate(5px, -5px); }
+      100% { transform: translate(0, 0); }
+    }
+
+    .slides-container {
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      min-height: 280px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 18px;
+      padding: 30px 40px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(12px);
+      user-select: none;
+      z-index: 10; 
+    }
+
+    .slide {
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 0.3em;
+      animation: glow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      0%, 100% {
+        text-shadow: 0 0 8px #8ec5fc, 0 0 20px #88e0ef;
+        color: #caf0f8;
+      }
+      50% {
+        text-shadow: 0 0 15px #ade8f4, 0 0 30px #90e0ef;
+        color: #90e0ef;
+      }
+    }
+
+    .emoji {
+      font-size: 4rem;
+      animation: bounce 2s ease-in-out infinite;
+      margin-bottom: 25px;
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
+    .effect-item {
+      font-size: 1.3rem;
+      margin: 18px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    .effect-item:nth-child(odd) {
+      animation-delay: 0s;
+    }
+
+    .effect-item:nth-child(even) {
+      animation-delay: 1.5s;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        color: #caf0f8;
+      }
+      50% {
+        color: #90e0ef;
+      }
+    }
+
+    .effect-emoji {
+      font-size: 1.8rem;
+    }
+
+    .buttons {
+      margin-top: 35px;
+      display: flex;
+      gap: 25px;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    button {
+      background: #90e0ef;
+      border: none;
+      border-radius: 50px;
+      padding: 12px 28px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #023e8a;
+      cursor: pointer;
+      box-shadow: 0 5px 10px rgba(144, 224, 239, 0.5);
+      transition: background 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+
+    button:disabled {
+      background: #a0c4cba3;
+      color: #6a7d8c;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    button:hover:not(:disabled) {
+      background: #48cae4;
+      color: #fff;
+      box-shadow: 0 7px 14px rgba(72, 202, 228, 0.7);
+    }
+
+    footer {
+      margin-top: 50px;
+      font-size: 0.95rem;
+      color: #d0e8f2cc;
+      z-index: 10;
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      .effect-item {
+        font-size: 1.1rem;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="stars" aria-hidden="true"></div>
+
+  <div class="slides-container" aria-live="polite">
+    <div id="slide1" class="slide" role="group" aria-label="Efectos del sueño">
+      <div class="emoji">😴🌙</div>
+      <h1>Efectos del Sueño</h1>
+      <div class="effect-item"><span class="effect-emoji">🛌</span> El sueño tiene efectos tanto en la salud física como mental.</div>
+      <div class="effect-item"><span class="effect-emoji">😔</span> Recuperación física y mental: El cuerpo y el cerebro se reparan.</div>
+      <div class="effect-item"><span class="effect-emoji">🛏️</span> Mejora la memoria, el aprendizaje y la atención.</div>
+      <div class="effect-item"><span class="effect-emoji">😪</span> Ayuda a la salud del corazón y al equilibrio emocional.</div>
+    </div>
+
+    <div id="slide2" class="slide" role="group" aria-label="Efectos positivos del sueño" hidden>
+      <div class="emoji">😴🌙</div>
+      <h1>Efectos Positivos del Sueño</h1>
+      <div class="effect-item"><span class="effect-emoji">🧠</span> Mejora la memoria y concentración</div>
+      <div class="effect-item"><span class="effect-emoji">💪</span> Fortalece el sistema inmunológico</div>
+      <div class="effect-item"><span class="effect-emoji">❤️</span> Regula la presión arterial</div>
+    </div>
+
+    <div id="slide3" class="slide" role="group" aria-label="Beneficios emocionales del sueño" hidden>
+      <div class="emoji">😌✨</div>
+      <h1>Beneficios Emocionales</h1>
+      <div class="effect-item"><span class="effect-emoji">😴</span> Reduce estrés y ansiedad</div>
+      <div class="effect-item"><span class="effect-emoji">😊</span> Mejora el estado de ánimo</div>
+      <div class="effect-item"><span class="effect-emoji">💤</span> Favorece el descanso profundo</div>
+    </div>
+
+    <div id="slide4" class="slide" role="group" aria-label="Impacto en el rendimiento" hidden>
+      <div class="emoji">⚡🌟</div>
+      <h1>Impacto en el Rendimiento</h1>
+      <div class="effect-item"><span class="effect-emoji">🏃‍♂️</span> Aumenta energía y resistencia física</div>
+      <div class="effect-item"><span class="effect-emoji">🧘‍♀️</span> Mejora la concentración mental</div>
+      <div class="effect-item"><span class="effect-emoji">❤️‍🔥</span> Favorece la salud cardiovascular</div>
+    </div>
+  </div>
+
+  <div class="buttons" role="group" aria-label="Navegación entre pantallas">
+    <button id="prevBtn" aria-label="Pantalla anterior" disabled>Anterior</button>
+    <button id="nextBtn" aria-label="Siguiente pantalla">Siguiente</button>
+  </div>
+
+  <footer>Descansa bien para una vida más saludable 🌟</footer>
+
+  <script>
+    const starsContainer = document.querySelector('.stars');
+    const starCount = 60;
+
+    for(let i=0; i < starCount; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+
+      const size = Math.random() * 2 + 1; 
+      star.style.width = size + 'px';
+      star.style.height = size + 'px';
+
+      star.style.top = Math.random() * 100 + 'vh';
+      star.style.left = Math.random() * 100 + 'vw';
+
+      star.style.animationDuration = (3 + Math.random() * 3) + 's';
+      star.style.animationDelay = (Math.random() * 5) + 's';
+
+      starsContainer.appendChild(star);
+    }
+
+    const slides = document.querySelectorAll('.slides-container .slide');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    let currentSlide = 0;
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.hidden = i !== index;
+      });
+
+      prevBtn.disabled = index === 0;
+      nextBtn.disabled = index === slides.length - 1;
+    }
+
+    prevBtn.addEventListener('click', () => {
+      if(currentSlide > 0) {
+        currentSlide--;
+        showSlide(currentSlide);
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if(currentSlide < slides.length - 1) {
+        currentSlide++;
+        showSlide(currentSlide);
+      }
+    });
+
+    showSlide(currentSlide);
+  </script>
+</body>
+</html>
